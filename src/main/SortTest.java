@@ -7,30 +7,37 @@ import java.util.Calendar;
 
 public class SortTest {
     public static void main(String[] args) {
-        int[] array =  getArray('A');
+        int[] array =  getArray('B');
         int[] array2 =  array.clone();
         int[] array3 =  array.clone();
-        System.out.print("Array:");
-        SortUtil.printArray(array);
+        int[] array4 =  array.clone();
+        System.out.println("length of Array:" + array.length);
+        //SortUtil.printArray(array);
         Calendar start;
         Calendar end;
         start = Calendar.getInstance();
         SortUnit.quickSorting(array3);
         end = Calendar.getInstance();
         System.out.println("QuickSorting Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
-        SortUtil.printArray(array3);
+        //SortUtil.printArray(array3);
 
         start = Calendar.getInstance();
-        SortUnit.insertingSorting(array2,true);
+        SortUnit.quickSort(array4);
+        end = Calendar.getInstance();
+        System.out.println("QuickSort Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
+        //SortUtil.printArray(array4);
+
+        start = Calendar.getInstance();
+        //SortUnit.insertingSorting(array2,true);
         end = Calendar.getInstance();
         System.out.println("InsertingSorting Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
-        SortUtil.printArray(array2);
+        //SortUtil.printArray(array2);
 
         start = Calendar.getInstance();
-        SortUnit.bubbleSort(array,true);
+        //SortUnit.bubbleSort(array,true);
         end = Calendar.getInstance();
         System.out.println("BubbleSort Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
-        SortUtil.printArray(array);
+        //SortUtil.printArray(array);
 
         /*for (int i : array) {
             System.out.println(i);
@@ -45,7 +52,7 @@ public class SortTest {
                 arr = new int[]{8,10,2,3,6,1,5};
                 break;
             case 'B':
-                arr = SortUtil.genneratesArray(1000,1000);
+                arr = SortUtil.genneratesArray(100000000,1000000000);
             break;
         }
         return arr;
