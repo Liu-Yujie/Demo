@@ -3,16 +3,16 @@ package main;
 import util.SortUtil;
 
 public class SortUnit {
-    public static void bubbleSort(int[] array, boolean isAsc) {
-        bubbleSorting(array, isAsc);
+    public static void bubbleSort(int[] array) {
+        bubbleSorting(array, true);
     }
 
     /**
      * 冒泡排序
-     * @param array
-     * @param isAsc
+     * @param array 数组对象
+     * @param isAsc 是否升序排序
      */
-    static void bubbleSorting(int[] array, boolean isAsc) {
+    public static void bubbleSorting(int[] array, boolean isAsc) {
         if (SortUtil.isEmpty(array)) {
             return;
         }
@@ -33,10 +33,10 @@ public class SortUnit {
 
     /**
      * 插入排序
-     * @param array
-     * @param isAsc
+     * @param array 数组对象
+     *
      */
-    static void insertingSorting(int[] array, boolean isAsc) {
+    public static void insertingSorting(int[] array) {
         if (SortUtil.isEmpty(array)) {
             return;
         }
@@ -57,7 +57,7 @@ public class SortUnit {
 
     /**
      * 快速排序（PDF）
-     * @param array
+     * @param array 数组对象
      */
     public static void quickSorting(int[] array){
         if (SortUtil.isEmpty(array)) {
@@ -75,11 +75,11 @@ public class SortUnit {
         quickSorting_c(array,q+1,r);
     }
 
-    private static int partition(int[] arr, int p, int r) {
+    public static int partition(int[] arr, int p, int r) {
         return partition(arr,p,r,false);
     }
 
-    private static int partition(int[] arr, int p, int r,boolean showConsoleLog) {
+    public static int partition(int[] arr, int p, int r,boolean showConsoleLog) {
         int pivot = arr[r];
         if (showConsoleLog){
             System.out.println("---Start---");
@@ -136,7 +136,7 @@ public class SortUnit {
 
     /**
      * 快速排序（双路扫描）
-     * @param array
+     * @param array 数组对象
      */
     public static void quickSort(int[] array){
         if (SortUtil.isEmpty(array)){
@@ -147,9 +147,9 @@ public class SortUnit {
 
     /**
      * 双路扫描
-     * @param array
-     * @param low
-     * @param high
+     * @param array 数组对象
+     * @param low 低位下标
+     * @param high 高位下标
      */
     public static void quickSort(int[] array, int low, int high){
         int i,j,tem,t;
@@ -187,19 +187,19 @@ public class SortUnit {
 
     /**
      * 归并排序
-     * @param arr
+     * @param arr 数组对象
      */
     public static void mergeSort(int[] arr){
         if (SortUtil.isEmpty(arr))
             return;
-        mergeSort(arr,0,arr.length);
+        mergeSort(arr,0,arr.length - 1);
     }
 
     /**
      * 分组递归
-     * @param arr
-     * @param left
-     * @param right
+     * @param arr 数组对象
+     * @param left 左数组的第一个元素的索引
+     * @param right 右数组最后一个元素的索引
      */
     public static void mergeSort(int[] arr, int left, int right){
         if (left >= right)
@@ -210,7 +210,7 @@ public class SortUnit {
         mergeSort(arr,center + 1,right);
 
         merge(arr,left,center,right);
-        SortUtil.printArray(arr);
+        //SortUtil.printArray(arr,"center :" + center);
     }
 
     /**
@@ -247,7 +247,7 @@ public class SortUnit {
         }
 
         //copy the date from the temp array to arr
-        while (tem < right){
+        while (tem <= right){
             arr[tem] = temArr[tem++];
         }
 

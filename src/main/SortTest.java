@@ -7,7 +7,7 @@ import java.util.Calendar;
 
 public class SortTest {
     public static void main(String[] args) {
-        int[] array =  getArray('A');
+        int[] array =  getArray('B');
         int[] array2 =  array.clone();
         int[] array3 =  array.clone();
         int[] array4 =  array.clone();
@@ -22,7 +22,7 @@ public class SortTest {
         SortUnit.mergeSort(array5);
         end = Calendar.getInstance();
         System.out.println("归并排序 耗时 :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
-        //SortUtil.printArray(array3);
+        //SortUtil.printArray(array5,"finally : ");
 
         //快排
         start = Calendar.getInstance();
@@ -65,8 +65,8 @@ public class SortTest {
                 arr = new int[]{8,10,2,3,6,1,5};
                 break;
             case 'B':
-                arr = SortUtil.genneratesArray(100000,1000000000);
-            break;
+                arr = SortUtil.genneratesArray(10000000,1000000000);
+                break;
         }
         return arr;
     }
