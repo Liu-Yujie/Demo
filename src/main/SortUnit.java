@@ -7,6 +7,11 @@ public class SortUnit {
         bubbleSorting(array, isAsc);
     }
 
+    /**
+     * 冒泡排序
+     * @param array
+     * @param isAsc
+     */
     static void bubbleSorting(int[] array, boolean isAsc) {
         if (SortUtil.isEmpty(array)) {
             return;
@@ -26,6 +31,11 @@ public class SortUnit {
         }
     }
 
+    /**
+     * 插入排序
+     * @param array
+     * @param isAsc
+     */
     static void insertingSorting(int[] array, boolean isAsc) {
         if (SortUtil.isEmpty(array)) {
             return;
@@ -45,6 +55,10 @@ public class SortUnit {
         }
     }
 
+    /**
+     * 快速排序（PDF）
+     * @param array
+     */
     public static void quickSorting(int[] array){
         if (SortUtil.isEmpty(array)) {
             return;
@@ -120,6 +134,10 @@ public class SortUnit {
         return i;
     }
 
+    /**
+     * 快速排序（双路扫描）
+     * @param array
+     */
     public static void quickSort(int[] array){
         if (SortUtil.isEmpty(array)){
             return;
@@ -127,6 +145,12 @@ public class SortUnit {
         quickSort(array,0,array.length - 1);
     }
 
+    /**
+     * 双路扫描
+     * @param array
+     * @param low
+     * @param high
+     */
     public static void quickSort(int[] array, int low, int high){
         int i,j,tem,t;
         if (low > high){
@@ -159,5 +183,73 @@ public class SortUnit {
         quickSort(array,low,j-1);
         //递归调用右半数组
         quickSort(array,j+1,high);
+    }
+
+    /**
+     * 归并排序
+     * @param arr
+     */
+    public static void mergeSort(int[] arr){
+        if (SortUtil.isEmpty(arr))
+            return;
+        mergeSort(arr,0,arr.length);
+    }
+
+    /**
+     * 分组递归
+     * @param arr
+     * @param left
+     * @param right
+     */
+    public static void mergeSort(int[] arr, int left, int right){
+        if (left >= right)
+            return;
+
+        int center = (left + right) / 2 ;
+        mergeSort(arr,left,center);
+        mergeSort(arr,center + 1,right);
+
+        merge(arr,left,center,right);
+        SortUtil.printArray(arr);
+    }
+
+    /**
+     * 将两个数组进行归并，归并前面2个数组已有序，归并后依然有序
+     * @param arr 数组对象
+     * @param left 左数组的第一个元素的索引
+     * @param center 左数组的最后一个元素的索引，center+1是右数组第一个元素的索引
+     * @param right 右数组最后一个元素的索引
+     */
+    public static void merge(int[] arr, int left, int center, int right){
+        int[] temArr = new int[arr.length];
+        //the first index of the right array
+        int mid = center + 1;
+        //the index of temArr
+        int third = left;
+        //the cache of the first index
+        int tem = left;
+
+        while (left <= center && mid <= right){
+            //To put the smaller data between the two array into the temp array
+            if (arr[left] <= arr[mid]){
+                temArr[third++] = arr[left++];
+            }else {
+                temArr[third++] = arr[mid++];
+            }
+        }
+
+        //to put the rest of element into the temp array
+        while (left <= center){
+            temArr[third++] = arr[left++];
+        }
+        while (mid <= right){
+            temArr[third++] = arr[mid++];
+        }
+
+        //copy the date from the temp array to arr
+        while (tem < right){
+            arr[tem] = temArr[tem++];
+        }
+
     }
 }

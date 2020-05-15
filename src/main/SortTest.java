@@ -7,36 +7,49 @@ import java.util.Calendar;
 
 public class SortTest {
     public static void main(String[] args) {
-        int[] array =  getArray('B');
+        int[] array =  getArray('A');
         int[] array2 =  array.clone();
         int[] array3 =  array.clone();
         int[] array4 =  array.clone();
+        int[] array5 =  array.clone();
         System.out.println("length of Array:" + array.length);
         //SortUtil.printArray(array);
         Calendar start;
         Calendar end;
+
+        //归并排序
         start = Calendar.getInstance();
-        SortUnit.quickSorting(array3);
+        SortUnit.mergeSort(array5);
         end = Calendar.getInstance();
-        System.out.println("QuickSorting Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
+        System.out.println("归并排序 耗时 :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
         //SortUtil.printArray(array3);
 
+        //快排
         start = Calendar.getInstance();
-        SortUnit.quickSort(array4);
+        SortUnit.quickSorting(array4);
         end = Calendar.getInstance();
-        System.out.println("QuickSort Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
+        System.out.println("快排 耗时 :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
         //SortUtil.printArray(array4);
 
+        //快速排序（双路扫描）
+        start = Calendar.getInstance();
+        SortUnit.quickSort(array3);
+        end = Calendar.getInstance();
+        System.out.println("快速排序（双路扫描）耗时 :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
+        //SortUtil.printArray(array3);
+
+        //插排
         start = Calendar.getInstance();
         //SortUnit.insertingSorting(array2,true);
         end = Calendar.getInstance();
-        System.out.println("InsertingSorting Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
+        System.out.println("InsertingSorting 耗时 :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
         //SortUtil.printArray(array2);
 
+        //冒泡
         start = Calendar.getInstance();
         //SortUnit.bubbleSort(array,true);
         end = Calendar.getInstance();
-        System.out.println("BubbleSort Cost :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
+        System.out.println("BubbleSort 耗时 :" + (end.getTimeInMillis() - start.getTimeInMillis()) + "ms");
         //SortUtil.printArray(array);
 
         /*for (int i : array) {
@@ -52,7 +65,7 @@ public class SortTest {
                 arr = new int[]{8,10,2,3,6,1,5};
                 break;
             case 'B':
-                arr = SortUtil.genneratesArray(100000000,1000000000);
+                arr = SortUtil.genneratesArray(100000,1000000000);
             break;
         }
         return arr;
